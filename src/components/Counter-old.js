@@ -4,24 +4,31 @@ import { counterActions } from '../store/index';
 import classes from './Counter.module.css';
 
 const Counter = () => {
-  const counter = useSelector((state) => state.counter.counter);
-  const showCounter = useSelector((state) => state.counter.showCounter);
+  //useSelector vyberie konkretnu polozku zo storu
+  //zaroven component prihlasi ako subscriber
+  const counter = useSelector((state) => state.counter);
+  const showCounter = useSelector((state) => state.showCounter);
+  //useDispatch() vrati funkciu dispach()
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
-    dispatch(counterActions.increment());
+    //dispatch({ type: 'increment' });
+    dispatch(counterActions.increment()); //pozor, treba zavolat fc, cize dat zatvorky!!!
   };
 
   const decrementHandler = () => {
-    dispatch(counterActions.decrement());
+    //dispatch({ type: 'decrement' });
+    dispatch(counterActions.decrement()); //zatvorky-()!!!
   };
 
   const increaseHandler = () => {
-    dispatch(counterActions.increase(5));
+    //dispatch({ type: 'increase', amount: 5 });
+    dispatch(counterActions.increase(5)); //vytvori objekt payload: 10 ...teraz cislo, ale inac objekt
   };
 
   const toggleCounterHandler = () => {
-    dispatch(counterActions.toggle());
+    //dispatch({ type: 'toggle' });
+    dispatch(counterActions.toggle()); //zatvorky-()!!!
   };
 
   return (
